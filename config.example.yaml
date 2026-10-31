@@ -1,0 +1,11 @@
+# Copy this file to config.yaml and fill in your values.
+
+service_account_file: service_account.json   # Google Cloud service account key
+gsc_site_url: "sc-domain:example.com"         # or "https://www.example.com/"
+ga4_property_id: "123456789"                  # numbers only
+spreadsheet_id: "your_google_sheet_id"        # from the sheet URL
+
+days: 28                       # length of each period compared
+top_n: 20                      # rows in gainers and losers tabs
+striking_min_impressions: 100  # filter for striking distance queries
+low_ctr_min_impressions: 500   # filter for low CTR pages
