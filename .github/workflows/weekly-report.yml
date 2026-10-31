@@ -1,0 +1,24 @@
+name: Weekly SEO Report
+
+on:
+  schedule:
+    - cron: "30 3 * * 1"   # every Monday, 9:00 AM IST
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Write secrets to files
+        env:
+          SA_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          CONFIG: ${{ secrets.REPORT_CONFIG_YAML }}
+        run: |
+          echo "$SA_KEY" > service_account.json
+          echo "$CONFIG" > config.yaml
+      - run: python main.py --config config.yaml
